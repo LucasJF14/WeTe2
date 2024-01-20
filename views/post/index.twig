@@ -1,0 +1,46 @@
+{% extends '../base.twig' %}
+
+{% block content %}
+    {# Odosielat prispevky moze len prihlaseny pouzivatel #}
+    {% if user %}
+        <form action="/post/new" method="post">
+            <div class="card">
+                <h5 class="card-header">
+                    Pridajte nový príspevok
+                </h5>
+                <div class="card-body">
+                    <textarea name="sprava" class="form-control"></textarea>
+                </div>
+                <div class="card-footer">
+                    <input type="submit" class="btn btn-success float-end" value="Odoslať">
+                </div>
+            </div>
+        </form>
+    {% endif %}
+    {% for post in posts %}
+        <div class="card-group width: 18rem">
+            <div class="card-header">
+                <div class="float-start">
+                    <i class="fa-solid fa-user"></i> {{ post.pouzivatelske_meno }}
+                    &nbsp;<i class="fa-regular fa-clock"></i> {{ post.created_at | date('d. m. Y H:i') }}
+                </div>
+                <div class="float-end">
+                    <div class="badge bg-info" data-action="add-like" style="cursor: pointer" data-post-id="{{ post.id }}">
+                        <div class="float-start">
+                            <i class="fa-solid fa-thumbs-up"></i> &nbsp
+                        </div>
+                        <div id="post-rating-{{ post.id }}" class="float-end">{{ post.rating }}</div>
+                    </div>
+                    {# Administrator ma pravo vymazavat prispevky #}
+                    {% if 'admin' in user.roles %}
+                        <br>
+                        <a class="badge bg-danger d-block" href="/post/delete/{{ post.id }}"><i class="fa-solid fa-trash"></i></a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card-body">
+                <pre>{{ post.Message }}</pre>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

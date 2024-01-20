@@ -1,0 +1,65 @@
+{% extends '../base.twig' %}
+
+{% block content %}
+    <div class="d-flex flex-column justify-content-center" style="margin-left: 20%; margin-right: 20%;">
+        <div class="d-flex flex-row justify-content-center" style="margin-left: 20%; margin-right: 20%;">
+            <a href="/sort/date" >
+                <button class="btn btn-success rounded-3" style="margin-left: 5px" >
+                    Zoradiť podľa dátum
+                </button>
+            </a>
+            <a href="/sort/name">
+                <button class="btn btn-success rounded-3" style="margin-left: 5px" >
+                    Zoradiť podľa názov
+                </button>
+            </a>
+            <a href="/sort/region">
+                <button class="btn btn-success rounded-3" style="margin-left: 5px" >
+                    Zoradiť podľa región
+                </button>
+            </a>
+            <a href="/">
+                <button class="btn btn-success rounded-3" style="margin-left: 5px">
+                    Reset
+                </button>
+            </a>
+        </div>
+    {% for event in events %}
+    <div class="p-2">
+    <div class="card border-info border border-2 mb-3">
+        <div class="card-body list-group-item-dark text-primary">
+            <h5 class="card-title text-center">{{ event.nazov }}</h5>
+            <p class="card-text text-center">{{ event.opisPodujatia }}</p>
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-info text-center">Typ podujatia: {{ event.typPodujatia }}</li>
+            <li class="list-group-item list-group-item-info text-center">Dátum podujatia: {{ event.datumKonania }}</li>
+            <li class="list-group-item list-group-item-info text-center">Region podujatia: {{ event.region }}</li>
+        </ul>
+            <li class="list-group-item list-group-item-info text-center">Adresa podujatia: {{ event.miestoKonania }}</li>
+
+        <div class="card-footer bg-dark rounded-3 text-center">
+            <a href="/spravy/{{ event.sprava_ID }}">
+                <button class="btn btn-success rounded-3" >
+                    Príspevky
+                </button>
+            </a>
+            {% if auth %}
+                <form method="POST" action="/index/{{ event.sprava_ID }}">
+                    <button class="btn btn-danger" type="submit">
+                        Odstrániť
+                    </button>
+                </form>
+                <form method="GET" action="/upravPodujatie/{{ event.sprava_ID }}">
+                    <button class="btn btn-info" type="submit">
+                        Upraviť
+                    </button>
+                </form>
+
+            {% endif %}
+        </div>
+        </div>
+    </div>
+    </div>
+    {% endfor %}
+    </div>
+{% endblock%}

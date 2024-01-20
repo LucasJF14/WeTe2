@@ -1,0 +1,38 @@
+{% extends '../base.twig' %}
+
+{% block content %}
+    <div class="container">
+        <br>
+        <div class="card bg-secondary bg-gradient border border-5 border-dark max-width: 30rem">
+            <form method="POST" action="/spravy">
+                <textarea class="form-control" name="textPole" rows="4" placeholder="Sem napiste komentar"></textarea>
+                <div class="flex-row">
+                    <input type="text" name="textUser">
+                    <input class="btn btn-info btn-sm" type="submit">
+                </div>
+                <br>
+            </form>
+            <br>
+            <div id="card-body border border-3">
+                {% for m in messages %}
+                    <div class="card border-info mb-3 border border-5 max-width: 18rem">
+                        <div class="card-body text-primary">
+                            <p>Dátum: {{ m.datumKon }} Používateľ: {{ m.prihlasovacie_meno }}
+                                <br> Správa: {{ m.sprava }}</p>
+                        </div>
+
+                        {% if auth %}
+                        <div>
+                            <form action="/vymazPodujatie/{{ m.Message_ID }}" method="post">
+                                    <div class="text-center">
+                                        <input class="btn btn-danger text-right" type="submit" value="Odstrániť">
+                                    </div>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock%}

@@ -1,0 +1,20 @@
+{% extends '../base.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-4 offset-4">
+            <form action="/admin/login" method="post" class="mt-4">
+                <div class="card">
+                    <div class="alert alert-success card-header">Administratorovo prihlásenie</div>
+                    <div class="card-body">
+                        <label>Prihlasovacie meno</label>
+                        <input class="form-control" type="text" name="pouzivatelskeMeno" placeholder="Zadajte Vaše prihlasovacie meno.">
+                        <label>Heslo</label>
+                        <input class="form-control" type="password" name="heslo" placeholder="Zadajte Vaše prihlasovacie heslo.">
+                        <input class="btn btn-success mt-4" type="submit" value="Prihlásiť sa">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

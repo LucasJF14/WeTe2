@@ -1,0 +1,35 @@
+{% extends '../base.twig' %}
+
+{% block content %}
+    <div class="card border-dark mb-3 border border-1 max-width: 18rem text-center">
+        <form method="POST" action="/posliPodujatie">
+            <div class="form-group ">
+                <label for="Nazov">Názov príspevku:</label>
+                <input placeholder="Zadajte názov" type="text" name="nazov" class="form-control" id="Nazov">
+            </div>
+            <div class="form-group">
+                <label for="Opis">Popis príspevku:</label>
+                <input placeholder="Zadajte popis" type="text" name="opisPodujatia" class="form-control" id="Opis">
+            </div>
+            <div class="form-group">
+                <label for="Typ">Typ príspevku:</label>
+                <input placeholder="Zadajte typ" type="text" name="typPodujatia" class="form-control" id="Typ">
+            </div>
+            <div class="form-group">
+                <label for="Datum">Dátum príspevku:</label>
+                <input placeholder="mm.dd.yyyy" type="text" name="datumKonania" class="form-control" id="Datum">
+            </div>
+            <div class="form-group">
+                <label for="Adresa">Adresa príspevku:</label>
+                <input placeholder="Zadajte adresu" type="text" name="miestoKonania" class="form-control" id="Adresa">
+            </div>
+            <div class="form-group">
+                <label for="Region">Región príspevku:</label>
+                <input placeholder="Zadajte región" type="text" name="region" class="form-control" id="Region">
+            </div>
+            <div class="form-group">
+                <input class="btn btn-success form-control" type="submit">
+            </div>
+        </form>
+    </div>
+{% endblock %}
